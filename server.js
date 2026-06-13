@@ -8,6 +8,7 @@ const DATA_GO_KR_API_KEY = process.env.DATA_GO_KR_API_KEY || "4f86e93f65527a040e
 const TMAP_API_KEY = process.env.TMAP_API_KEY || "UxD0j4QxC37OOxIuSY13K94Mw1vgAo5X7yCgE5c8";
 const KREI_OFFICE_API_URL = process.env.KREI_OFFICE_API_URL || "";
 const KREI_MACHINE_API_URL = process.env.KREI_MACHINE_API_URL || "";
+const PUBLIC_API_TIMEOUT_MS = Number(process.env.PUBLIC_API_TIMEOUT_MS || 5000);
 
 // data.go.kr 기관코드별 농기계임대 API (GetFarmMachineRentalService 공통 패턴)
 const REGIONAL_RENTAL_APIS = [
@@ -102,7 +103,9 @@ function appendPublicDataKey(rawUrl, extraParams = {}) {
 
 async function fetchJsonFromPublicData(rawUrl, params = {}) {
   const requestUrl = appendPublicDataKey(rawUrl, params);
-  const response = await fetch(requestUrl);
+  const response = await fetch(requestUrl, {
+    signal: AbortSignal.timeout(PUBLIC_API_TIMEOUT_MS)
+  });
   const text = await response.text();
   if (!response.ok) {
     throw new Error(`Public data request failed: ${response.status}`);
@@ -281,7 +284,7 @@ async function getPublicCenters() {
   return _publicCentersCache;
 }
 
-const server = http.createServer((req, res) => {
+function handleRequest(req, res) {
   const url = new URL(req.url, `http://${req.headers.host}`);
 
   if (url.pathname === "/api/config") {
@@ -395,8 +398,13 @@ const server = http.createServer((req, res) => {
     }
     send(res, 200, content, MIME[path.extname(filePath).toLowerCase()] || "application/octet-stream");
   });
-});
+}
 
-server.listen(PORT, () => {
-  console.log(`Farm machine matcher running at http://localhost:${PORT}`);
-});
+if (require.main === module) {
+  const server = http.createServer(handleRequest);
+  server.listen(PORT, () => {
+    console.log(`Farm machine matcher running at http://localhost:${PORT}`);
+  });
+}
+
+module.exports = handleRequest;
