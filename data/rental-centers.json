@@ -1,0 +1,129 @@
+[
+  {
+    "id": "daejeon-001",
+    "name": "대전광역시농업기술센터 농기계임대",
+    "address": "대전광역시 유성구 교촌대정로 97",
+    "phone": "042-270-6934",
+    "lat": 36.3764,
+    "lng": 127.3389,
+    "inventory": [
+      { "name": "트랙터", "aliases": ["로터리", "트랙터부산물파쇄기"], "dailyCost": 60000 },
+      { "name": "이앙기", "aliases": ["승용이앙기", "보행이앙기"], "dailyCost": 40000 },
+      { "name": "콤바인", "aliases": ["벼수확콤바인"], "dailyCost": 120000 },
+      { "name": "관리기", "aliases": ["승용관리기", "중경제초기"], "dailyCost": 25000 },
+      { "name": "동력분무기", "aliases": ["방제기", "분무기"], "dailyCost": 12000 },
+      { "name": "비닐피복기", "aliases": ["피복기", "두둑성형기"], "dailyCost": 18000 },
+      { "name": "퇴비살포기", "aliases": ["살포기", "비료살포기"], "dailyCost": 45000 },
+      { "name": "파쇄기", "aliases": ["부산물파쇄기", "줄기파쇄기"], "dailyCost": 30000 }
+    ]
+  },
+  {
+    "id": "sejong-001",
+    "name": "세종특별자치시농업기술센터 농기계임대 본소",
+    "address": "세종특별자치시 연서면 월하천로 289",
+    "phone": "044-301-2525",
+    "lat": 36.5921,
+    "lng": 127.1968,
+    "inventory": [
+      { "name": "트랙터", "aliases": ["로터리"], "dailyCost": 65000 },
+      { "name": "이앙기", "aliases": ["승용이앙기", "보행이앙기"], "dailyCost": 40000 },
+      { "name": "콤바인", "aliases": ["벼수확콤바인", "맥류콤바인"], "dailyCost": 130000 },
+      { "name": "동력분무기", "aliases": ["방제기", "분무기"], "dailyCost": 12000 },
+      { "name": "롤베일러", "aliases": ["곤포기", "사일리지기"], "dailyCost": 50000 },
+      { "name": "비닐수거기", "aliases": ["피복지수거기", "멀칭필름수거기"], "dailyCost": 22000 }
+    ]
+  },
+  {
+    "id": "sejong-002",
+    "name": "세종특별자치시농업기술센터 북부",
+    "address": "세종특별자치시 전의면 운주산로 1278",
+    "phone": "044-301-2665",
+    "lat": 36.6721,
+    "lng": 127.2168,
+    "inventory": [
+      { "name": "트랙터", "aliases": ["로터리"], "dailyCost": 65000 },
+      { "name": "관리기", "aliases": ["승용관리기"], "dailyCost": 25000 },
+      { "name": "동력분무기", "aliases": ["방제기"], "dailyCost": 12000 },
+      { "name": "고구마수확기", "aliases": ["굴취기", "감자수확기"], "dailyCost": 35000 },
+      { "name": "파종기", "aliases": ["마늘파종기", "정식기"], "dailyCost": 28000 }
+    ]
+  },
+  {
+    "id": "cheongju-001",
+    "name": "청주시농업기술센터 농기계임대",
+    "address": "충청북도 청주시 상당구 단재로 480",
+    "phone": "043-201-3844",
+    "lat": 36.6225,
+    "lng": 127.4882,
+    "inventory": [
+      { "name": "트랙터", "aliases": ["로터리", "트랙터부산물파쇄기"], "dailyCost": 60000 },
+      { "name": "콤바인", "aliases": ["벼수확콤바인", "콩수확기"], "dailyCost": 120000 },
+      { "name": "이앙기", "aliases": ["승용이앙기"], "dailyCost": 40000 },
+      { "name": "관리기", "aliases": ["승용관리기", "제초기"], "dailyCost": 25000 },
+      { "name": "퇴비살포기", "aliases": ["살포기", "비료살포기"], "dailyCost": 45000 },
+      { "name": "드론", "aliases": ["농업용드론", "방제드론"], "dailyCost": 80000 }
+    ]
+  },
+  {
+    "id": "cheonan-001",
+    "name": "천안시농업기술센터 농기계임대",
+    "address": "충청남도 천안시 동남구 목천읍 목천안터1길 15",
+    "phone": "041-521-2966",
+    "lat": 36.7643,
+    "lng": 127.2180,
+    "inventory": [
+      { "name": "트랙터", "aliases": ["로터리", "심토파쇄기"], "dailyCost": 60000 },
+      { "name": "고구마수확기", "aliases": ["굴취기", "수확기"], "dailyCost": 35000 },
+      { "name": "파종기", "aliases": ["마늘파종기", "양파정식기", "이식기"], "dailyCost": 28000 },
+      { "name": "동력분무기", "aliases": ["방제기"], "dailyCost": 12000 },
+      { "name": "비닐피복기", "aliases": ["피복기", "두둑성형기"], "dailyCost": 18000 },
+      { "name": "선별기", "aliases": ["농산물선별기", "과일선별기"], "dailyCost": 25000 }
+    ]
+  },
+  {
+    "id": "nonsan-001",
+    "name": "논산시농업기술센터 농기계임대",
+    "address": "충청남도 논산시 부적면 백일헌로 3",
+    "phone": "041-746-8363",
+    "lat": 36.2356,
+    "lng": 127.0701,
+    "inventory": [
+      { "name": "트랙터", "aliases": ["로터리"], "dailyCost": 60000 },
+      { "name": "이앙기", "aliases": ["승용이앙기", "보행이앙기"], "dailyCost": 40000 },
+      { "name": "콤바인", "aliases": ["벼수확콤바인"], "dailyCost": 125000 },
+      { "name": "SS기", "aliases": ["과수방제기", "스피드스프레이어"], "dailyCost": 55000 },
+      { "name": "퇴비살포기", "aliases": ["살포기"], "dailyCost": 45000 },
+      { "name": "건조기", "aliases": ["농산물건조기", "곡물건조기"], "dailyCost": 20000 }
+    ]
+  },
+  {
+    "id": "dangjin-001",
+    "name": "당진시 농기계임대사업소",
+    "address": "충청남도 당진시 구봉로 46",
+    "phone": "041-360-6382",
+    "lat": 36.8968,
+    "lng": 126.6290,
+    "inventory": [
+      { "name": "트랙터", "aliases": ["로터리"], "dailyCost": 60000 },
+      { "name": "이앙기", "aliases": ["승용이앙기"], "dailyCost": 40000 },
+      { "name": "콤바인", "aliases": ["벼수확콤바인"], "dailyCost": 120000 },
+      { "name": "동력분무기", "aliases": ["방제기", "분무기"], "dailyCost": 12000 },
+      { "name": "비닐피복기", "aliases": ["피복기"], "dailyCost": 18000 }
+    ]
+  },
+  {
+    "id": "eumseong-001",
+    "name": "음성군농업기술센터 서부 농기계임대",
+    "address": "충청북도 음성군 금왕읍 멍심이길 209",
+    "phone": "043-871-2372",
+    "lat": 36.9489,
+    "lng": 127.5770,
+    "inventory": [
+      { "name": "트랙터", "aliases": ["로터리"], "dailyCost": 55000 },
+      { "name": "관리기", "aliases": ["승용관리기", "중경제초기"], "dailyCost": 23000 },
+      { "name": "고구마수확기", "aliases": ["굴취기", "수확기", "감자수확기"], "dailyCost": 35000 },
+      { "name": "동력분무기", "aliases": ["방제기", "분무기"], "dailyCost": 12000 },
+      { "name": "파쇄기", "aliases": ["부산물파쇄기", "잔재물파쇄기"], "dailyCost": 30000 }
+    ]
+  }
+]

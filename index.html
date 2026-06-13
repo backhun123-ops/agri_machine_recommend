@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>농기계 길잡이 — 작물·작업별 농기계 추천과 임대소 연결</title>
+    <meta name="description" content="작물과 오늘 할 작업만 고르면 필요한 농기계, 안전 수칙, 가까운 임대사업소 전화까지 한 번에 안내합니다.">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="logo">
+          <span class="logo-icon" aria-hidden="true">🌾</span>
+          <div class="logo-text">
+            <strong>농기계 길잡이</strong>
+            <small>작물·작업별 임대소 추천</small>
+          </div>
+        </div>
+        <nav class="site-nav" aria-label="주요 메뉴">
+          <a href="index.html" class="active" aria-current="page">맞춤 추천</a>
+          <a href="machines.html">농기계 도감</a>
+        </nav>
+        <button id="fontToggle" class="font-toggle" type="button" aria-pressed="false" title="글씨 크게 보기">
+          <span aria-hidden="true">가</span> 큰 글씨
+        </button>
+      </div>
+    </header>
+
+    <main class="shell">
+      <section class="hero-panel" aria-label="농기계 추천 시작">
+        <div class="hero-copy">
+          <p class="eyebrow">무엇이든 물어보세요</p>
+          <h1>내 작물과 작업에 맞는<br>농기계와 임대소를 한번에</h1>
+          <p class="hero-lead">작물 이름과 오늘 할 작업만 입력하면<br>필요한 농기계·부속, 가까운 임대소 전화까지 바로 연결됩니다.</p>
+          <div class="steps-strip">
+            <div class="step">
+              <span class="step-num">1</span>
+              <span>작물·작업 입력</span>
+            </div>
+            <span class="step-arrow" aria-hidden="true">→</span>
+            <div class="step">
+              <span class="step-num">2</span>
+              <span>농기계 확인</span>
+            </div>
+            <span class="step-arrow" aria-hidden="true">→</span>
+            <div class="step">
+              <span class="step-num">3</span>
+              <span>임대소 연결</span>
+            </div>
+          </div>
+          <p id="seasonTip" class="season-tip"></p>
+        </div>
+
+        <form id="farmForm" class="selector">
+          <p class="form-title">어떤 작업을 하시나요?</p>
+          <label>
+            <span>재배 작물</span>
+            <select id="cropInput" name="crop">
+              <option value="딸기">딸기</option>
+              <option value="토마토">토마토</option>
+              <option value="파프리카">파프리카</option>
+              <option value="오이">오이</option>
+              <option value="벼">벼</option>
+              <option value="고구마">고구마 · 감자</option>
+              <option value="고추">고추</option>
+              <option value="상추">상추 (엽채류)</option>
+            </select>
+          </label>
+          <label>
+            <span>오늘 작업</span>
+            <select id="workInput" name="work">
+              <!-- 작물 선택 시 자동으로 채워집니다 -->
+            </select>
+          </label>
+          <label class="wide-field">
+            <span>현재 위치</span>
+            <div class="location-row">
+              <input id="locationInput" name="location" value="대전 유성구" autocomplete="off" placeholder="시/군/읍 입력">
+              <button type="button" id="geoButton" class="icon-button" title="내 GPS 위치 사용" aria-label="내 GPS 위치 사용">
+                <span aria-hidden="true">⌖</span>
+              </button>
+            </div>
+          </label>
+          <button class="primary-button" type="submit">
+            <span>맞춤 농기계 찾기</span>
+            <span aria-hidden="true">→</span>
+          </button>
+        </form>
+      </section>
+
+      <section class="app-grid" aria-live="polite">
+        <article class="machine-card">
+          <div class="card-meta">
+            <span class="card-icon" aria-hidden="true">🚜</span>
+            <span class="card-kicker">오늘 필요한 장비</span>
+          </div>
+          <h2 id="machineName"></h2>
+          <p id="machineReason" class="plain-text"></p>
+          <div class="recommend-stack">
+            <div>
+              <h3>핵심 장비 세트</h3>
+              <ul id="attachmentList" class="pill-list"></ul>
+            </div>
+            <div>
+              <h3>작업 전 확인 사항</h3>
+              <ul id="prepList" class="check-list"></ul>
+            </div>
+          </div>
+          <div class="guide">
+            <h3>농민 눈높이 안내</h3>
+            <p id="farmerGuide"></p>
+          </div>
+          <div class="safety">
+            <h3>안전 수칙</h3>
+            <ul id="safetyList" class="check-list warn"></ul>
+          </div>
+        </article>
+
+        <article class="map-card">
+          <div class="map-header">
+            <div>
+              <div class="card-meta">
+                <span class="card-icon" aria-hidden="true">📍</span>
+                <span class="card-kicker">임대소 위치</span>
+              </div>
+              <h2 id="centerName"></h2>
+            </div>
+            <button id="routeButton" class="secondary-button" type="button">경로 보기</button>
+          </div>
+          <div id="mapCanvas" class="map-canvas">
+            <div class="map-fallback" id="mapFallback">
+              <span class="pin farm-pin"></span>
+              <span class="pin center-pin"></span>
+              <p>임대소를 선택하면 지도가 표시됩니다.</p>
+            </div>
+            <iframe id="googleMapFrame" class="google-map-frame"
+                    frameborder="0" allowfullscreen
+                    referrerpolicy="no-referrer-when-downgrade"
+                    src="about:blank"></iframe>
+          </div>
+          <div id="routePanel" class="route-panel"></div>
+        </article>
+
+        <article class="rental-card">
+          <div class="card-meta">
+            <span class="card-icon" aria-hidden="true">🏪</span>
+            <span class="card-kicker">장비 보유 임대소</span>
+          </div>
+          <p id="centerAddress" class="plain-text address-text"></p>
+          <ul id="centerList" class="center-list" aria-label="다른 임대소 후보"></ul>
+          <dl class="facts">
+            <div class="fact-item">
+              <dt>거리</dt>
+              <dd id="distanceText"></dd>
+            </div>
+            <div class="fact-item">
+              <dt>예상 시간</dt>
+              <dd id="durationText"></dd>
+            </div>
+            <div class="fact-item">
+              <dt>일일 임대료</dt>
+              <dd id="costText"></dd>
+            </div>
+          </dl>
+          <div class="action-row">
+            <a id="phoneButton" class="call-button" href="#">전화 연결</a>
+          </div>
+        </article>
+      </section>
+
+      <section class="info-band">
+        <article class="process-card">
+          <div class="card-meta">
+            <span class="card-icon" aria-hidden="true">📋</span>
+            <span class="card-kicker">임대 이용 절차</span>
+          </div>
+          <h2>처음이라면 이렇게 진행하세요</h2>
+          <ol class="process-list">
+            <li><strong>전화 예약</strong><span>농번기에는 1–2주 전 예약을 권장합니다. 장비 보유 여부를 먼저 확인하세요.</span></li>
+            <li><strong>안전교육 이수</strong><span>최초 1회 안전교육이 필요한 지자체가 많습니다. 교육 일정은 임대소에 문의하세요.</span></li>
+            <li><strong>장비 수령</strong><span>신분증을 지참하세요. 트랙터 등 일부 장비는 운전면허가 필요할 수 있습니다.</span></li>
+            <li><strong>세척 후 반납</strong><span>흙과 잔재물을 세척해 반납 시간 내에 돌려주세요. 파손 시 즉시 알려야 합니다.</span></li>
+          </ol>
+        </article>
+
+        <article class="faq-card">
+          <div class="card-meta">
+            <span class="card-icon" aria-hidden="true">💬</span>
+            <span class="card-kicker">자주 묻는 질문</span>
+          </div>
+          <h2>이런 점이 궁금해요</h2>
+          <details>
+            <summary>누구나 빌릴 수 있나요?</summary>
+            <p>대부분 관내에 거주하며 농업경영체에 등록된 농업인이 대상입니다. 지자체마다 기준이 달라 전화로 확인하는 것이 가장 정확합니다.</p>
+          </details>
+          <details>
+            <summary>임대료는 얼마이고 어떻게 내나요?</summary>
+            <p>장비별 일일 임대료는 보통 1만–13만원 수준이며, 수령 시 카드나 계좌이체로 결제하는 곳이 많습니다. 표시된 금액이 없으면 임대소에 문의하세요.</p>
+          </details>
+          <details>
+            <summary>기계를 처음 다뤄봐서 걱정돼요</summary>
+            <p>임대사업소에서 수령 시 사용법을 안내해 줍니다. 드론처럼 교육 이수가 필수인 장비도 있으니 예약할 때 미리 말씀하세요.</p>
+          </details>
+          <details>
+            <summary>고장이 나면 어떻게 하나요?</summary>
+            <p>즉시 작업을 멈추고 임대소에 연락하세요. 정상 사용 중 고장은 임대소에서 수리하지만, 음주·과실 사고는 배상 책임이 생길 수 있습니다.</p>
+          </details>
+        </article>
+      </section>
+
+      <!-- hidden data inputs kept for JS compatibility -->
+      <div hidden>
+        <textarea id="apiDataInput"></textarea>
+        <button id="publicDataButton" type="button"></button>
+        <button id="applyDataButton" type="button"></button>
+        <input id="officeApiUrlInput">
+        <input id="machineApiUrlInput">
+        <button id="sampleDataButton" type="button"></button>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p><strong>🌾 농기계 길잡이</strong> — 작물과 작업에 맞는 농기계를 찾고, 가까운 임대사업소로 바로 연결합니다.</p>
+        <p class="footer-note">임대소 정보는 공공데이터포털(data.go.kr) 농기계임대 API와 지역 데이터를 기반으로 합니다. 임대료·보유 장비는 변동될 수 있으니 방문 전 전화로 확인하세요.</p>
+      </div>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>

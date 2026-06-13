@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>농기계 도감 — 농기계 길잡이</title>
+    <meta name="description" content="임대로 빌릴 수 있는 농기계를 한눈에. 장비 소개, 안전 수칙, 보유 임대소 연락처까지 확인하세요.">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="logo">
+          <span class="logo-icon" aria-hidden="true">🌾</span>
+          <div class="logo-text">
+            <strong>농기계 길잡이</strong>
+            <small>작물·작업별 임대소 추천</small>
+          </div>
+        </div>
+        <nav class="site-nav" aria-label="주요 메뉴">
+          <a href="index.html">맞춤 추천</a>
+          <a href="machines.html" class="active" aria-current="page">농기계 도감</a>
+        </nav>
+        <button id="fontToggle" class="font-toggle" type="button" aria-pressed="false" title="글씨 크게 보기">
+          <span aria-hidden="true">가</span> 큰 글씨
+        </button>
+      </div>
+    </header>
+
+    <main class="shell">
+      <section class="catalog-hero" aria-label="농기계 도감 소개">
+        <p class="eyebrow">농기계 도감</p>
+        <h1>임대로 빌릴 수 있는 농기계를<br>한눈에 살펴보세요</h1>
+        <p class="hero-lead">장비가 하는 일, 조심해야 할 점, 지금 어느 임대소에 있는지까지.<br>임대소 이름을 누르면 주소와 전화번호가 바로 나옵니다.</p>
+        <input id="catalogSearch" type="search" placeholder="기계 이름이나 작물로 검색 (예: 콤바인, 딸기)" autocomplete="off">
+      </section>
+
+      <section id="catalogGrid" class="catalog-grid" aria-live="polite">
+        <p class="catalog-empty">농기계 정보를 불러오는 중입니다…</p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p><strong>🌾 농기계 길잡이</strong> — 작물과 작업에 맞는 농기계를 찾고, 가까운 임대사업소로 바로 연결합니다.</p>
+        <p class="footer-note">임대소 정보는 공공데이터포털(data.go.kr) 농기계임대 API와 지역 데이터를 기반으로 합니다. 임대료·보유 장비는 변동될 수 있으니 방문 전 전화로 확인하세요. 농기계 사진은 위키미디어 커먼즈(자유 라이선스)의 자료로, 실제 임대 장비와 모델이 다를 수 있습니다.</p>
+      </div>
+    </footer>
+
+    <script src="app.js"></script>
+    <script src="catalog.js"></script>
+  </body>
+</html>
