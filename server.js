@@ -8,7 +8,7 @@ const DATA_GO_KR_API_KEY = process.env.DATA_GO_KR_API_KEY || "4f86e93f65527a040e
 const TMAP_API_KEY = process.env.TMAP_API_KEY || "UxD0j4QxC37OOxIuSY13K94Mw1vgAo5X7yCgE5c8";
 const KREI_OFFICE_API_URL = process.env.KREI_OFFICE_API_URL || "";
 const KREI_MACHINE_API_URL = process.env.KREI_MACHINE_API_URL || "";
-const PUBLIC_API_TIMEOUT_MS = Number(process.env.PUBLIC_API_TIMEOUT_MS || 5000);
+const PUBLIC_API_TIMEOUT_MS = Number(process.env.PUBLIC_API_TIMEOUT_MS || 3000);
 
 // data.go.kr 기관코드별 농기계임대 API (GetFarmMachineRentalService 공통 패턴)
 const REGIONAL_RENTAL_APIS = [
